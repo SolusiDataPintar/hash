@@ -24,15 +24,9 @@ func Hash(data ...[]byte) []byte {
 	if len(data) == 1 {
 		hash = sha3.Sum512(data[0])
 	} else {
-		concatDataLen := 0
+		concatData := []byte{}
 		for _, d := range data {
-			concatDataLen += len(d)
-		}
-		concatData := make([]byte, concatDataLen)
-		curOffset := 0
-		for _, d := range data {
-			copy(concatData[curOffset:], d)
-			curOffset += len(d)
+			concatData = append(concatData, d...)
 		}
 		hash = sha3.Sum512(concatData)
 	}
