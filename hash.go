@@ -7,6 +7,7 @@ import (
 	"errors"
 	"io"
 	"os"
+	"path/filepath"
 	"regexp"
 
 	"golang.org/x/crypto/sha3"
@@ -52,7 +53,7 @@ func HashReader(in io.Reader) ([]byte, error) {
 }
 
 func HashFile(path string) ([]byte, error) {
-	f, err := os.Open(path)
+	f, err := os.Open(filepath.Clean(path))
 	if err != nil {
 		return nil, err
 	}
