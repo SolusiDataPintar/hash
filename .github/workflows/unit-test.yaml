@@ -10,8 +10,8 @@ jobs:
         uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00
         with:
           go-version-file: go.mod
-      - name: Install Dependencies
-        run: go test ./...
+      - name: Run Unit Tests
+        run: go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
       - name: Check Test Coverage
         uses: vladopajic/go-test-coverage@cc5012c2cfa84542e02b079141958a885861d326
         with:
